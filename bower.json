@@ -1,0 +1,20 @@
+{
+  "name": "frontend-skeleton",
+  "description": "Skeleton for Gulp based projects that also use SASS, Babel (ES-2015). Bower included for Bootstrap, and Font-Awesome.",
+  "main": "build/index.html",
+  "authors": [
+    "Eric Barber"
+  ],
+  "license": "ISC",
+  "homepage": "http://www.ericbarber.me",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ],
+  "private": true
+}
+
