@@ -2,15 +2,17 @@
 
 This is just a frontend skeleton for kickstarting projects that will be using Gulp/Babel (ES 2015) + Browserify/SASS/Jasmine.<br />
 Also included is lodash/jQuery/Bootstrap/Font Awesome ~~via Bower~~*.<br />
-
 Yarn has been included for the option to *not* use NPM.<br />
 
 There are two ways to use this skeleton:<br />
 <h4>Method 1 (Retains /build)</h4>
+
 ```
 npm install
 ```
+
 <h4>Method 2 (Use Gulp to generate a new /build)</h4>
+
 ```
 npm start
 ```
@@ -41,8 +43,9 @@ gulp webserver - starts live reload monitoring & watching source directories for
 gulp noes6 - builds everything from node_modules and source, doesn't use ES6
 ```
 
-Prerequisites:
+Prerequisites:<br/>
 [Node/NPM](https://nodejs.org/en/)<br />
 [Git](https://github.com)
 <br/>
-*Bower is being depreciated.
+
+*Bower is being depreciated.*
