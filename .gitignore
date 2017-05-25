@@ -36,7 +36,8 @@
 ehthumbs.db
 Thumbs.db
 
-# Node Modules #
+# Node Modules, etc #
+.bowerrc
 /node_modules/*
 /vendor/*
 /bower_components/*

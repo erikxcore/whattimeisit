@@ -1,3 +1,5 @@
+'use strict';
+
 import gulp from 'gulp';
 import sourcemaps from 'gulp-sourcemaps';
 import buffer from 'gulp-buffer';
@@ -9,20 +11,68 @@ import sass from 'gulp-sass';
 import concat from 'gulp-concat';
 import imagemin from 'gulp-imagemin';
 import del from 'del';
+import server from 'gulp-server-livereload';
 
-let paths = {
-  images: './source/img/**/*',
-  sass: './source/sass/**/*.scss',
-  babel: './source/js/**/*.js',
-  html: './source/pages/**/*'
+const dirs = {
+  src: 'source',
+  dest: 'build',
+   nodeDir: 'node_modules' 
+};
+
+const paths = {
+  images: `${dirs.src}/img/**/*`,
+  sass: `${dirs.src}/sass/**/*.scss`,
+  css: `${dirs.src}/css/**`,
+  js: `${dirs.src}/js/**`,
+  babel: `${dirs.src}/js/**/*.js`,
+  html: `${dirs.src}/pages/**/*`
 };
 
 gulp.task('clean', () => {
   return del(['build']);
 });
 
+//VENDOR SPECIFIC
+/**************************/
+
+gulp.task('bootstrap-icons', () => { 
+    return gulp.src(`${dirs.nodeDir}/bootstrap-sass/assets/fonts/**`) 
+        .pipe(gulp.dest(`${dirs.dest}/fonts`)); 
+});
+
+gulp.task('bootstrap-js', () => { 
+    return gulp.src(`${dirs.nodeDir}/bootstrap-sass/assets/javascripts/**/*.min.js`) 
+        .pipe(gulp.dest(`${dirs.dest}/js`)); 
+});
+
+gulp.task('icons', () => { 
+    return gulp.src(`${dirs.nodeDir}/font-awesome/fonts/**`) 
+        .pipe(gulp.dest(`${dirs.dest}/fonts`)); 
+});
+
+gulp.task('jquery', () => { 
+    return gulp.src(`${dirs.nodeDir}/jquery/dist/jquery.min.js`) 
+        .pipe(gulp.dest(`${dirs.dest}/js`)); 
+});
+
+gulp.task('lodash', () => { 
+    return gulp.src(`${dirs.nodeDir}/lodash/lodash.min.js`) 
+        .pipe(gulp.dest(`${dirs.dest}/js`)); 
+});
+
+/*************************/
+//END VENDOR SPECIFIC
+
 gulp.task('copy_html', () => {
-  return gulp.src([paths.html]).pipe(gulp.dest('./build/'));
+  return gulp.src([paths.html]).pipe(gulp.dest(dirs.dest));
+});
+
+gulp.task('copy_css', () => {
+  return gulp.src([paths.css]).pipe(gulp.dest(`${dirs.dest}/css`));
+});
+
+gulp.task('copy_js', () => {
+  return gulp.src([paths.js]).pipe(gulp.dest(`${dirs.dest}/js`));
 });
 
 gulp.task('babel', () => {
@@ -35,22 +85,22 @@ gulp.task('babel', () => {
       }).bundle();
     }))
     .pipe(buffer())
-    .pipe(sourcemaps.init({ loadMaps: true }))
-    .pipe(uglify())
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./build/js/'));
+    //.pipe(sourcemaps.init({ loadMaps: true }))
+    //.pipe(uglify())
+    //.pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest(`${dirs.dest}/js`));
 });
 
 gulp.task('sass', () => {
   return gulp.src(paths.sass)
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./build/css'));
+    .pipe(gulp.dest(`${dirs.dest}/css`));
 });
 
-gulp.task('images', ['clean'], () => {
+gulp.task('images', () => {
   return gulp.src(paths.images)
     .pipe(imagemin({optimizationLevel: 5}))
-    .pipe(gulp.dest('./build/img'));
+    .pipe(gulp.dest(`${dirs.dest}/img`));
 });
 
 gulp.task('sass:watch', () => {
@@ -65,13 +115,51 @@ gulp.task('images:watch', () => {
   gulp.watch(paths.images, ['images']);
 });
 
-gulp.task('watch', () => {
+gulp.task('css:watch', () => {
+  gulp.watch(paths.css, ['copy_css']);
+});
+
+gulp.task('html:watch', () => {
+  gulp.watch(paths.html, ['copy_html']);
+});
+
+gulp.task('js:watch', () => {
+  gulp.watch(paths.js, ['copy_js']);
+});
+
+gulp.task('watch:babel', () => {
   gulp.watch(paths.babel, ['build']);
   gulp.watch(paths.sass, ['sass']);
   gulp.watch(paths.images, ['images']);
-  gulp.watch(paths.images, ['images']);
+  gulp.watch(paths.html, ['copy_html']);
+  gulp.watch(paths.css, ['copy_css']);
 });
 
-gulp.task('dirty_build', ['copy_html', 'babel', 'sass', 'images']);
+gulp.task('watch', () => {
+  gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.images, ['images']);
+  gulp.watch(paths.html, ['copy_html']);
+  gulp.watch(paths.js, ['copy_js']);
+  gulp.watch(paths.css, ['copy_css']);
+});
 
-gulp.task('default', ['clean', 'copy_html', 'babel', 'sass', 'images']);
+gulp.task('webserver', ['watch:babel'], () => {
+  gulp.src(`${dirs.dest}`)
+    .pipe(server({
+      livereload: true,
+      defaultFile: 'index.html',
+      open: true
+    }));
+});
+
+gulp.task('dirty_build', ['lodash','jquery','icons','bootstrap-icons','bootstrap-js','copy_html','copy_css','copy_js','sass', 'images']);
+
+gulp.task('dirty_build_babel', ['icons','bootstrap-icons','copy_html','babel','sass','images']);
+
+gulp.task('noes6', ['clean'], function () {
+  gulp.start('dirty_build');
+});
+
+gulp.task('default', ['clean'], function () {
+  gulp.start('dirty_build_babel');
+});
