@@ -17,6 +17,7 @@ npm start
 
 For development Live Reload is implemented by the gulp task 'gulp webserver', however, if you run the 'gulp watch' or 'gulp watch:babel' tasks your source directories will be watched accordingly, as well.<br />
 If you add a new directory, a new watch task will need to be generated. CSS/SCSS/JS/IMG/HTML(pages) folders are watched currently.<br />
+
 Two 'methodologies' are supported - either using ES6+SASS+PUG or using regular CSS/JS files. SASS is incorporated with the regular tasks if desired, however, browserify is only implemented for the ES6 code. Using PUG is optional.
 <br/>
 <br/>

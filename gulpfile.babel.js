@@ -28,7 +28,7 @@ const paths = {
   pug: `${dirs.src}/pug/**`,
   js: `${dirs.src}/js/**`,
   babel: `${dirs.src}/js/**/*.js`,
-  html: `${dirs.src}/pages/**/*`
+  html: `${dirs.src}/html/**/*`
 };
 
 gulp.task('clean', () => {
@@ -106,11 +106,9 @@ gulp.task('images', () => {
     .pipe(gulp.dest(`${dirs.dest}/img`));
 });
 
-gulp.task('build_pug', () => {
+gulp.task('pug', () => {
   return gulp.src(`${paths.pug}/*.pug`)
-  .pipe(pug({
-    // Your options in here.
-  })).pipe(gulp.dest(`${dirs.dest}`));
+  .pipe(pug({})).pipe(gulp.dest(`${dirs.dest}`));
 });
 
 gulp.task('sass:watch', () => {
@@ -139,7 +137,7 @@ gulp.task('js:watch', () => {
 
 gulp.task('watch:babel', () => {
   gulp.watch(paths.babel, ['build']);
-  gulp.watch(paths.pug, ['build_pug']);
+  gulp.watch(paths.pug, ['pug']);
   gulp.watch(paths.sass, ['sass']);
   gulp.watch(paths.images, ['images']);
   gulp.watch(paths.html, ['copy_html']);
@@ -165,12 +163,12 @@ gulp.task('webserver', ['watch:babel'], () => {
 
 gulp.task('dirty_build', ['lodash','jquery','icons','bootstrap-icons','bootstrap-js','copy_html','copy_css','copy_js','sass', 'images']);
 
-gulp.task('dirty_build_babel', ['icons','bootstrap-icons','copy_html','babel','sass','build_pug','images']);
+gulp.task('dirty_build_babel', ['icons','bootstrap-icons','copy_html','babel','sass','pug','images']);
 
-gulp.task('noes6', ['clean'], function () {
+gulp.task('noes6', ['clean'], () => {
   gulp.start('dirty_build');
 });
 
-gulp.task('default', ['clean'], function () {
+gulp.task('default', ['clean'], () => {
   gulp.start('dirty_build_babel');
 });
