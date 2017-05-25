@@ -1,10 +1,10 @@
 {
   "name": "frontend-skeleton",
-  "version": "1.0.0",
-  "description": "Skeleton for Gulp based projects that also use SASS, Babel (ES-2015). Bower included for Bootstrap, and Font-Awesome.",
+  "version": "1.1.0",
+  "description": "Skeleton for Gulp based projects that also use SASS, Babel (ES2015).",
   "main": "build/index.html",
   "scripts": {
-    "start": "npm install && bower install && gulp",
+    "start": "npm install && gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Eric Barber",

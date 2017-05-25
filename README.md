@@ -1,5 +1,6 @@
 This is just a frontend skeleton for kickstarting projects that will be using Gulp/Babel (ES 2015) + Browserify/SASS/Jasmine.
 Also included is lodash/jQuery/Bootstrap/Font Awesome ~~via Bower~~*.
+
 Yarn has been included for the option to *not* use NPM.
 
 There are two ways to use this skeleton:
