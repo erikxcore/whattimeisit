@@ -1,12 +1,15 @@
-doctype html
-html(lang="en")
-  head
-    title= pageTitle
-    script(type='text/javascript').
-      if (foo) bar(1 + 5)
-  body
-    h1 Pug - node template engine
-    #container.col
+extends extends/layout.pug
+
+block content
+  - var pets = ['cat', 'dog']
+  - var title = "Pug Demo"
+  h1= title
+  ul
+  each petName in pets
+    li= petName
+
+
+  #container.col
       if youAreUsingPug
         p You are amazing
       else

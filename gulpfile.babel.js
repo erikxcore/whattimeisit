@@ -107,7 +107,7 @@ gulp.task('images', () => {
 });
 
 gulp.task('pug', () => {
-  return gulp.src(`${paths.pug}/*.pug`)
+  return gulp.src([`${paths.pug}/*.pug`, `!${paths.pug}/includes/*`, `!${paths.pug}/extends/*` ])
   .pipe(pug({})).pipe(gulp.dest(`${dirs.dest}`));
 });
 
