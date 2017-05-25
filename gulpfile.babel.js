@@ -12,6 +12,8 @@ import concat from 'gulp-concat';
 import imagemin from 'gulp-imagemin';
 import del from 'del';
 import server from 'gulp-server-livereload';
+import pug from 'gulp-pug';
+
 
 const dirs = {
   src: 'source',
@@ -23,6 +25,7 @@ const paths = {
   images: `${dirs.src}/img/**/*`,
   sass: `${dirs.src}/sass/**/*.scss`,
   css: `${dirs.src}/css/**`,
+  pug: `${dirs.src}/pug/**`,
   js: `${dirs.src}/js/**`,
   babel: `${dirs.src}/js/**/*.js`,
   html: `${dirs.src}/pages/**/*`
@@ -103,6 +106,13 @@ gulp.task('images', () => {
     .pipe(gulp.dest(`${dirs.dest}/img`));
 });
 
+gulp.task('build_pug', () => {
+  return gulp.src(`${paths.pug}/*.pug`)
+  .pipe(pug({
+    // Your options in here.
+  })).pipe(gulp.dest(`${dirs.dest}`));
+});
+
 gulp.task('sass:watch', () => {
   gulp.watch(paths.sass, ['sass']);
 });
@@ -129,6 +139,7 @@ gulp.task('js:watch', () => {
 
 gulp.task('watch:babel', () => {
   gulp.watch(paths.babel, ['build']);
+  gulp.watch(paths.pug, ['build_pug']);
   gulp.watch(paths.sass, ['sass']);
   gulp.watch(paths.images, ['images']);
   gulp.watch(paths.html, ['copy_html']);
@@ -154,7 +165,7 @@ gulp.task('webserver', ['watch:babel'], () => {
 
 gulp.task('dirty_build', ['lodash','jquery','icons','bootstrap-icons','bootstrap-js','copy_html','copy_css','copy_js','sass', 'images']);
 
-gulp.task('dirty_build_babel', ['icons','bootstrap-icons','copy_html','babel','sass','images']);
+gulp.task('dirty_build_babel', ['icons','bootstrap-icons','copy_html','babel','sass','build_pug','images']);
 
 gulp.task('noes6', ['clean'], function () {
   gulp.start('dirty_build');

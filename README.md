@@ -1,6 +1,6 @@
 <h2>Another skeleton in the closet</h2>
 
-This is just a frontend skeleton for kickstarting projects that will be using Gulp/Babel (ES 2015) + Browserify/SASS/Jasmine.<br />
+This is just a frontend skeleton for kickstarting projects that will be using Gulp/Babel (ES 2015) + Browserify/SASS/Jasmine/PUG.<br />
 Also included is lodash/jQuery/Bootstrap/Font Awesome ~~via Bower~~*.<br />
 
 Yarn has been included for the option to *not* use NPM.<br />
@@ -17,7 +17,7 @@ npm start
 
 For development Live Reload is implemented by the gulp task 'gulp webserver', however, if you run the 'gulp watch' or 'gulp watch:babel' tasks your source directories will be watched accordingly, as well.<br />
 If you add a new directory, a new watch task will need to be generated. CSS/SCSS/JS/IMG/HTML(pages) folders are watched currently.<br />
-Two 'methodologies' are supported - either using ES6+SASS or using regular CSS/JS files. SASS is incorporated with the regular tasks if desired, however, browserify is only implemented for the ES6 code.
+Two 'methodologies' are supported - either using ES6+SASS+PUG or using regular CSS/JS files. SASS is incorporated with the regular tasks if desired, however, browserify is only implemented for the ES6 code. Using PUG is optional.
 <br/>
 <br/>
 If you'd like to use another grid system or CSS framework feel free to just run:
