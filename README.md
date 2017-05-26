@@ -29,7 +29,7 @@ npm uninstall jquery
 npm uninstall lodash
 ```
 Note, you will have to modify gulpfile.babel.js to remove references to these libraries because they are copied over by default (bootstrap-sass & font-awesome, etc.). <br/>
-source/sass/vendor.scss also contains references to these files due to imports as well as source/index.html.<br/>
+source/sass/vendor.scss also contains references to these files due to imports as well as source/index.html or source/pug/_includes/head.pug and source/pug/_includes/foot.pug.<br/>
 
 Gulp Commands:
 ```
