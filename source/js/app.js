@@ -15,7 +15,7 @@ console.log(whatsMyName());
 
 //jQuery test
 let bodyText = '<h2>Goodbye Moon!</h2>';
-$('body').append(bodyText);
+$('.container h1:first').append(bodyText);
 
 const bootstrap3_enabled = (typeof $().emulateTransitionEnd == 'function');
 
