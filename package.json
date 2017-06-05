@@ -9,13 +9,15 @@
   },
   "author": "Eric Barber",
   "license": "ISC",
-  "repository" :
-  { "type" : "git"
-    , "url" : "https://github.com/erikxcore/skeleton.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erikxcore/skeleton.git"
   },
   "devDependencies": {
+    "axios": "^0.16.2",
     "babel-core": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "babel-register": "^6.24.1",
     "babelify": "^7.3.0",
     "browserify": "^14.3.0",
@@ -32,6 +34,9 @@
     "gulp-tap": "^1.0.1",
     "gulp-uglify": "^3.0.0",
     "jasmine": "^2.6.0",
+    "prop-types": "^15.5.10",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
     "yarn": "^0.24.5"
   },
   "dependencies": {

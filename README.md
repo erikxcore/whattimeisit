@@ -2,6 +2,9 @@
 
 This is just a frontend skeleton for kickstarting projects that will be using Gulp/Babel (ES 2015) + Browserify/SASS/Jasmine/PUG.<br />
 Also included is lodash/jQuery/Bootstrap/Font Awesome ~~via Bower~~*.<br />
+<br/>
+React/React-Dom has been included as well as a demo component if needed. Routing has not been included. <br/>
+A dummy PHP web service has also been included in the cases where Node or some other serverside solution isn't available.<br/>
 Yarn has been included for the option to *not* use NPM.<br />
 
 There are two ways to use this skeleton:<br />
