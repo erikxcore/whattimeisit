@@ -1,7 +1,7 @@
 {
-  "name": "frontend-skeleton",
-  "version": "1.1.0",
-  "description": "Skeleton for Gulp based projects that also use SASS, Babel (ES2015).",
+  "name": "what-time-is-it",
+  "version": "0.0.1",
+  "description": "React demo project for discovering and comparing global timezones.",
   "main": "build/index.html",
   "scripts": {
     "start": "npm install && gulp",
@@ -11,7 +11,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/erikxcore/skeleton.git"
+    "url": "https://github.com/erikxcore/whattimeisit.git"
   },
   "devDependencies": {
     "axios": "^0.16.2",
@@ -33,16 +33,12 @@
     "gulp-sourcemaps": "^2.6.0",
     "gulp-tap": "^1.0.1",
     "gulp-uglify": "^3.0.0",
-    "jasmine": "^2.6.0",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "yarn": "^0.24.5"
+    "react-dom": "^15.5.4"
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
-    "font-awesome": "^4.7.0",
-    "jquery": "^3.2.1",
-    "lodash": "^4.17.4"
+    "react-svg": "^2.1.21"
   }
 }

@@ -5,18 +5,6 @@ window.jQuery = window.$ = $;
 //Require is used here because import will not work with bootstrap's JS files due to the global jQuery requirement.
 require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap');
 jQuery.noConflict(true);
-
-import { whatsMyName } from './extra';
-
-
-
-console.log("Checking if imported file is working...");
-console.log(whatsMyName());
-
-//jQuery test
-let bodyText = '<h2>Goodbye Moon!</h2>';
-$('.container h1:first').append(bodyText);
-
-const bootstrap3_enabled = (typeof $().emulateTransitionEnd == 'function');
-
-console.log("Bootstrap enabled? " + bootstrap3_enabled);
+//const bootstrap3_enabled = (typeof $().emulateTransitionEnd == 'function');
+//console.log("Bootstrap enabled? " + bootstrap3_enabled);
+//All this is only neccesary for Bootstrap - being that it isn't actually a requirement for this project, expect this to be removed in the future.

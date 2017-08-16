@@ -1,3 +1,16 @@
+
+
+<h2>What time is it?</h2>
+
+This is a work in progress using React. The goal is to present users with a clickable world map that can display current time/timezone information.
+Eventually, it would be nice to be able to also 'move' the time to any value to get the time in a different zone - so possibly setting a 'global time' value but default to current time.
+Another nice to have would be the ability to select point A and point B and compare a time value in each area (e.g. I want to know what 8PM in NY is compraed to Japan time.)
+
+Special thanks to Wikipedia for https://commons.wikimedia.org/wiki/File:World_-_time_zones_map_(2014).svg .
+Also special thanks to Heather Booker (https://github.com/heatherbooker/react-world-map) for discovering SVG related caveats with React.
+
+<hr/>
+
 <h2>Another skeleton in the closet</h2>
 
 This is just a frontend skeleton for kickstarting projects that will be using Gulp/Babel (ES 2015) + Browserify/SASS/Jasmine/PUG.<br />

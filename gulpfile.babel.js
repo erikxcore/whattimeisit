@@ -29,6 +29,7 @@ const paths = {
   php: `${dirs.src}/php/**`,
   htaccess: `${dirs.src}/php/**/.htaccess`,
   js: `${dirs.src}/js/**`,
+  asset: `${dirs.src}/asset/**`,
   json: `${dirs.src}/*.json`,
   babel: `${dirs.src}/js/*`, //Should pick up both JS and JSX
   html: `${dirs.src}/html/**/*`
@@ -49,11 +50,6 @@ gulp.task('bootstrap-icons', () => { 
 gulp.task('bootstrap-js', () => { 
     return gulp.src(`${dirs.nodeDir}/bootstrap-sass/assets/javascripts/**/*.min.js`) 
         .pipe(gulp.dest(`${dirs.dest}/js`)); 
-});
-
-gulp.task('icons', () => { 
-    return gulp.src(`${dirs.nodeDir}/font-awesome/fonts/**`) 
-        .pipe(gulp.dest(`${dirs.dest}/fonts`)); 
 });
 
 gulp.task('jquery', () => { 
@@ -79,6 +75,10 @@ gulp.task('copy_css', () => {
 
 gulp.task('copy_js', () => {
   return gulp.src([paths.js]).pipe(gulp.dest(`${dirs.dest}/js`));
+});
+
+gulp.task('copy_asset', () => {
+  return gulp.src([paths.asset]).pipe(gulp.dest(`${dirs.dest}/asset`));
 });
 
 gulp.task('copy_php', () => {
@@ -130,6 +130,10 @@ gulp.task('sass:watch', () => {
   gulp.watch(paths.sass, ['sass']);
 });
 
+gulp.task('asset:watch', () => {
+  gulp.watch(paths.asset, ['copy_asset']);
+});
+
 gulp.task('babel:watch', () => {
   gulp.watch(paths.babel, ['babel']);
 });
@@ -172,6 +176,8 @@ gulp.task('watch:babel', () => {
   gulp.watch(paths.php, ['copy_php']);
   gulp.watch(paths.htaccess, ['copy_htaccess']);
   gulp.watch(paths.css, ['copy_css']);
+  gulp.watch(paths.asset, ['copy_asset']);
+
 });
 
 gulp.task('watch', () => {
@@ -183,6 +189,7 @@ gulp.task('watch', () => {
   gulp.watch(paths.php, ['copy_php']);
   gulp.watch(paths.htaccess, ['copy_htaccess']);
   gulp.watch(paths.css, ['copy_css']);
+  gulp.watch(paths.asset, ['copy_asset']);
 });
 
 gulp.task('webserver', ['watch:babel'], () => {
@@ -194,9 +201,9 @@ gulp.task('webserver', ['watch:babel'], () => {
     }));
 });
 
-gulp.task('dirty_build', ['lodash','jquery','icons','bootstrap-icons','bootstrap-js','copy_html','copy_css','copy_js','copy_json','copy_php','copy_htaccess','sass', 'images']);
+gulp.task('dirty_build', ['lodash','jquery','bootstrap-icons','bootstrap-js','copy_html','copy_css','copy_js','copy_json','copy_php','copy_asset','copy_htaccess','sass', 'images']);
 
-gulp.task('dirty_build_babel', ['icons','bootstrap-icons','copy_html','copy_json','copy_php','copy_htaccess','babel','sass','pug','images']);
+gulp.task('dirty_build_babel', ['bootstrap-icons','copy_html','copy_json','copy_php','copy_asset','copy_htaccess','babel','sass','pug','images']);
 
 gulp.task('noes6', ['clean'], () => {
   gulp.start('dirty_build');
